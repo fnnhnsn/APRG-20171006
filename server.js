@@ -46,3 +46,23 @@ app.post('/data', (request, response) => {
         response.redirect('/');
     });
 });
+
+// Auf Seite zum Einloggen weiterleiten
+
+app.get('/einloggen', (request, response) => {
+    response.sendFile(__dirname + '/einloggen.html');
+});
+
+// Vergleich der Daten
+
+app.post('/logIn', (request, response) => {
+    const login1 = request.body.login1;
+    const login2 = request.body.login2;
+
+    db.collection(DB_COLLECTION).findOne({'username': login1}, (error, result) => {
+        console.Log(result);
+    });
+    db.collection(DB_COLLECTION).findOne({'password': login2}, (error, result2) => {
+        console.Log(result2);
+    });
+});

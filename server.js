@@ -65,4 +65,17 @@ app.post('/logIn', (request, response) => {
     db.collection(DB_COLLECTION).findOne({'password': login2}, (error, result2) => {
         console.Log(result2);
     });
+
+    if(result != "" && result2 != "") {
+        response.render('ausgabe', {
+            'name': result,
+            'passwort': result2, 
+        });
+    }
+    else {
+        response.render('fehler', {
+
+        });
+    };
+
 });
